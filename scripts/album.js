@@ -28,6 +28,20 @@ var albumMarconi = {
   ]
 };
 
+var albumYellowCard = {
+  name: 'Ocean Avenue',
+  artist: 'Yellowcard',
+  lebel: 'Capitol',
+  year: '2002',
+  albumArtUrl: 'assets/images/album_covers/19.png',
+  songs: [
+    { name: 'Way Away', length: '3:22'},
+    { name: 'Breathing', length: '3:38'},
+    { name: 'Ocean Avenue', length: '3:18'},
+    { name: 'Empty Apartment', length: '3:37'}
+  ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
     '<tr class="album-view-song-item">'
@@ -38,6 +52,9 @@ var createSongRow = function(songNumber, songName, songLength) {
   ;
   return template;
 };
+
+var currentAlbum = 0;
+
 var setCurrentAlbum = function(album) {
   var albumTitle = document.getElementsByClassName('album-view-title')[0];
   var albumArtist = document.getElementsByClassName('album-view-artist')[0];
@@ -58,3 +75,18 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
 };
+
+document.getElementsByClassName('album-cover-art')[0].addEventListener('click', function(event) {
+  if (currentAlbum == 0) {
+    setCurrentAlbum(albumMarconi);
+    var currentAlbum = 1;
+  }
+  else if (currentAlbum == 1) {
+    setCurrentAlbum(albumYellowCard);
+    var currentAlbum = 2;
+  }
+  else if (currentAlbum == 2) {
+    setCurrentAlbum(albumPicasso);
+    var currentAlbum = 0;
+  }
+})
